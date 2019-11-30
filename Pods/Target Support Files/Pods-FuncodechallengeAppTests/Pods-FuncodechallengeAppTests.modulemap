@@ -1,0 +1,6 @@
+framework module Pods_FuncodechallengeAppTests {
+  umbrella header "Pods-FuncodechallengeAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,48 @@
+PODS:
+  - Alamofire (5.0.0-rc.3)
+  - AppAuth (1.2.0):
+    - AppAuth/Core (= 1.2.0)
+    - AppAuth/ExternalUserAgent (= 1.2.0)
+  - AppAuth/Core (1.2.0)
+  - AppAuth/ExternalUserAgent (1.2.0)
+  - PureLayout (3.1.5)
+  - Realm (4.1.1):
+    - Realm/Headers (= 4.1.1)
+  - Realm/Headers (4.1.1)
+  - RealmSwift (4.1.1):
+    - Realm (= 4.1.1)
+  - SteamLogin (0.1.4):
+    - SteamLogin/Login (= 0.1.4)
+  - SteamLogin/Login (0.1.4)
+  - SwiftyJSON (4.3.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0.0-rc.3)
+  - AppAuth
+  - PureLayout
+  - RealmSwift
+  - SteamLogin
+  - SwiftyJSON (~> 4.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AppAuth
+    - PureLayout
+    - Realm
+    - RealmSwift
+    - SteamLogin
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
+  AppAuth: bce82c76043657c99d91e7882e8a9e1a93650cd4
+  PureLayout: 9b4ad47b2f0388c84ff534af23d96e720c1b875a
+  Realm: 25f0a8244cbb1c2271c922963ea8666fc2d8104d
+  RealmSwift: 9e2657b33764f80e4a4dffd6d440e24715782052
+  SteamLogin: 86eee7733cfaa417242671524f39561b0c22700c
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+
+PODFILE CHECKSUM: c12527283d47e2cb04e42f15ab733b4942c6c310
+
+COCOAPODS: 1.8.1
