@@ -21,7 +21,6 @@ class FriendsPresenter: UIViewController, FriendsPresentable {
     
     var friends: [SteamFriend]? { didSet {
         tableView.reloadData()
-        navigationItem.title = "Друзья"
         }
     }
     
@@ -30,9 +29,21 @@ class FriendsPresenter: UIViewController, FriendsPresentable {
         view.backgroundColor = .green
         configurateView()
         view = tableView
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        tableView.register(FriendCellView.self, forCellReuseIdentifier: "FriendCell")
+        tableView.rowHeight = 40.0
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.separatorColor = .black
+        tableView.backgroundColor = .black
+        
+        navigationItem.title = "Друзья"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.isTranslucent = false
+        
         listener?.viewIsReadyToPresentData()
     }
     
@@ -50,8 +61,8 @@ extension FriendsPresenter: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell")!
-        cell.textLabel?.text = friends![indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell") as! FriendCellView
+        cell.present(name: friends![indexPath.row].name, avatar: URL(string: friends![indexPath.row].avatar)!)
         return cell
     }
     

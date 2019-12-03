@@ -10,6 +10,7 @@ target 'FuncodechallengeApp' do
     pod 'SwiftyJSON', '~> 4.0'
     pod 'RealmSwift'
     pod 'SteamLogin'
+    pod 'Charts'
 end
 
 target 'FuncodechallengeAppTests' do

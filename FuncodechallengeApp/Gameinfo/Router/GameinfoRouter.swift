@@ -14,6 +14,10 @@ protocol GameinfoRouting {
     func getMasterViewController() -> UIViewController
 }
 
+protocol GameInfoPresentable {
+    func setMathces(matches: [MatchInfo])
+}
+
 class GameinfoRouter: GameinfoRouting {
     var uiViewController: UIViewController
     var interactor: GameinfoInteractor

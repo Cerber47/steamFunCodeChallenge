@@ -19,15 +19,15 @@ class SteamApi {
         "Content-Type":"application/x-www-form-urlencoded"
     ]
     static var appUserSteamId: String = ""
+    static var appUserStramIdShort: Int32 = 0
     static let baseUrl: String = "https://api.steampowered.com/"
 }
 
 class NetworkManager {
     func makeRequest(url: String, method: HTTPMethod, parameters:[String: Any], completion: @escaping (Data?)->Void) {
         AF.request(url, method: method, parameters: parameters, headers: SteamApi.headers).responseJSON() { response in
-            //print(response)
             switch response.result {
-            case .success(let value):
+            case .success( _):
                 completion(response.data)
             case .failure( _):
                 completion(nil)

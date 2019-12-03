@@ -28,6 +28,7 @@ final class AuthorizationPresenter: UIViewController, AuthorizationPresentable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .blue
         SteamLogin.steamApiKey = appKey
     }
     
@@ -51,7 +52,6 @@ final class AuthorizationPresenter: UIViewController, AuthorizationPresentable {
                 }
             }
         } else {
-            print("Already saved")
             onSuccessAuth()
         }
     }
@@ -59,6 +59,7 @@ final class AuthorizationPresenter: UIViewController, AuthorizationPresentable {
     func onSuccessAuth() {
         print("Sucess! \(steamUser?.steamID64 ?? "") ")
         SteamApi.appUserSteamId = steamUser!.steamID64!
+        SteamApi.appUserStramIdShort = Int32(steamUser!.steamID32!)!
         listener?.authCompleted()
     }
 }

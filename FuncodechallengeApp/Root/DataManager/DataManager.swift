@@ -24,11 +24,19 @@ class DataManager: DataManagable {
     var networkComponent: RealmNetworkDependancy
     
     init(component: RealmNetworkDependancy) {
+        
+        let config = Realm.Configuration(
+        schemaVersion: 4,
+        migrationBlock: { migration, oldSchemaVersion in
+        if oldSchemaVersion < 4 {
+            }}
+        )
+        Realm.Configuration.defaultConfiguration = config
+        
         realm = try! Realm()
-        
         networkComponent = component
-        
     }
+    
     
     func updateRealmMatches() {
         networkComponent.getProfileInfo() { matches in
@@ -43,8 +51,9 @@ class DataManager: DataManagable {
         var matchToAdd: [Dota2Match] = []
         for newMatch in newMatches {
             var foundFlag = false
-            for match in matches {
-                if match.id == newMatch.matchId {
+            //for match in matches {
+            for i in 0..<matches.count {
+                if matches[i].id == newMatch.matchId {
                     foundFlag = true
                     break
                 }
@@ -55,6 +64,11 @@ class DataManager: DataManagable {
                 matchToAdd.append(newMatch)
             }
         }
+        writeMatchesToDB(matches: matchToAdd)
+    }
+    
+    func getMatches() -> Results<MatchInfo> {
+        return realm.objects(MatchInfo.self)
     }
     
     private func getMatchesFromRealm() -> Results<MatchId> {
@@ -67,6 +81,7 @@ class DataManager: DataManagable {
             loadingQueue.sync {
                 networkComponent.getMatchDetails(of: String(match.matchId)) { details in
                     if details != nil {
+                        self.writeMatchDetaisToRealm(details: details!)
                         self.writeIdToRealm(with: match.matchId)
                     }
                 }
@@ -75,11 +90,17 @@ class DataManager: DataManagable {
     }
     
     private func writeIdToRealm(with id: Int) {
-        realm.add(MatchId(value: [id]))
+        try! realm.write {
+            let matchId = MatchId()
+            matchId.id = id
+            realm.add(matchId)
+        }
     }
     
     private func writeMatchDetaisToRealm(details: Dota2MatchDetails) {
+        let thisPlayerId = SteamApi.appUserStramIdShort
         let matchInfo = MatchInfo()
+        
         matchInfo.id = details.matchId
         matchInfo.duration = details.duration
         matchInfo.direScore = details.direScore
@@ -87,23 +108,22 @@ class DataManager: DataManagable {
         matchInfo.timestamp = details.timeStamp
         matchInfo.radiantWin = details.radiantWin
         
-        var playersList: List<MatchInfoPlayer> = List<MatchInfoPlayer>()
-        
         for player in details.players {
-            var newPlayer = MatchInfoPlayer()
-            newPlayer.kills = player.kills
-            newPlayer.assists = player.assists
-            newPlayer.deaths = player.deaths
-            newPlayer.id = player.heroId
-            newPlayer.lastHits = player.lastHits
-            newPlayer.level = player.level
-            newPlayer.gpm = player.gpm
-            newPlayer.xpm = player.xpm
-            newPlayer.heroId = player.heroId
-            playersList.append(newPlayer)
+            if player.accountId == Int(thisPlayerId) {
+                matchInfo.kills = player.kills
+                matchInfo.assists = player.assists
+                matchInfo.deaths = player.deaths
+                matchInfo.id = player.heroId
+                matchInfo.lastHits = player.lastHits
+                matchInfo.level = player.level
+                matchInfo.gpm = player.gpm
+                matchInfo.xpm = player.xpm
+                matchInfo.heroId = player.heroId
+                break
+            }
         }
-        matchInfo.players = playersList
-        
-        realm.add(matchInfo)
+        try! realm.write {
+            realm.add(matchInfo)
+        }
     }
 }

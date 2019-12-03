@@ -10,33 +10,45 @@ import Foundation
 import RealmSwift
 
 class MatchId: Object {
-    dynamic var id = 0
+    @objc dynamic var id = 0
 }
 
 
 class MatchInfo: Object {
-    dynamic var id = 0
-    dynamic var timestamp = 0
-    dynamic var radiantWin = true
-    dynamic var duration = 0
-    dynamic var radiantScore = 0
-    dynamic var direScore = 0
+    @objc dynamic var id = 0
+    @objc dynamic var timestamp = 0
+    @objc dynamic var radiantWin = true
+    @objc dynamic var duration = 0
+    @objc dynamic var radiantScore = 0
+    @objc dynamic var direScore = 0
     
-    dynamic var players = List<MatchInfoPlayer>()
+    @objc dynamic var heroId = 0
+    
+    @objc dynamic var kills = 0
+    @objc dynamic var deaths = 0
+    @objc dynamic var assists = 0
+    
+    @objc dynamic var lastHits = 0
+    @objc dynamic var gpm = 0
+    @objc dynamic var xpm = 0
+    
+    @objc dynamic var level = 0
+    
+    //dynamic var players = List<MatchInfoPlayer>()
 }
 
 
 class MatchInfoPlayer: Object {
-    dynamic var id = 0
-    dynamic var heroId = 0
+    @objc dynamic var id = 0
+    @objc dynamic var heroId = 0
     
-    dynamic var kills = 0
-    dynamic var deaths = 0
-    dynamic var assists = 0
+    @objc dynamic var kills = 0
+    @objc dynamic var deaths = 0
+    @objc dynamic var assists = 0
     
-    dynamic var lastHits = 0
-    dynamic var gpm = 0
-    dynamic var xpm = 0
+    @objc dynamic var lastHits = 0
+    @objc dynamic var gpm = 0
+    @objc dynamic var xpm = 0
     
-    dynamic var level = 0
+    @objc dynamic var level = 0
 }

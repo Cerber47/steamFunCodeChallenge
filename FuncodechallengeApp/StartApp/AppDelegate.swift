@@ -19,15 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = AuthorizationPresenter() as UIViewController
-        window?.makeKeyAndVisible()
+        //window = UIWindow(frame: UIScreen.main.bounds)
+        //window?.rootViewController = AuthorizationPresenter() as UIViewController
+        //window?.makeKeyAndVisible()
+        let launchRouter = RootBuilder().build()
         
-        return true
-        
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = AppBuilder().build()
+        launchRouter.lauch(from: window!)
         window?.makeKeyAndVisible()
+        launchRouter.routeToAuth()
         
         return true
     }

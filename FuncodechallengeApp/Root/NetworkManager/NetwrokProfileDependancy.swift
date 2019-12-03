@@ -20,6 +20,15 @@ struct SteamOwnedGame {
     var playtime: Int
     var iconUrl: String
     var imgUrl: String
+    
+    func getPlayTimeAsString() -> String {
+        return String(playtime/60) + " часов"
+    }
+    
+    func getStaticUrlForIcon() -> URL {
+        let urlString = "http://media.steampowered.com/steamcommunity/public/images/apps/\(appid)/\(iconUrl).jpg"
+        return URL(string: urlString)!
+    }
 }
 
 struct SteamRecentlyGame {
@@ -47,11 +56,15 @@ extension NetworkManager: ProfileNetworkDependancy {
     
     func pullGameList(of steamId: String, completion: @escaping(([SteamOwnedGame]?) -> Void)) {
         let url = "\(SteamApi.baseUrl)IPlayerService/GetOwnedGames/v0001/"
-        let paramAsString = "?key=\(Appkey)&include_played_free_games=1&include_appinfo=1&format=json&steamid=\(testSteamId)"
+        let paramAsString = "?key=\(Appkey)&include_played_free_games=1&include_appinfo=1&format=json&steamid=\(SteamApi.appUserSteamId)"
+        print(SteamApi.appUserSteamId)
         makeRequest(url: url+paramAsString, method: .get, parameters: [:]) { data in
-            if let games = self.parseGameList(data: data!) {
-                completion(games)
-            }
+            if data == nil {
+                completion(nil)
+            } else {
+                if let games = self.parseGameList(data: data!) {
+                    completion(games)
+                } else {completion(nil)}}
         }
     }
     
@@ -78,16 +91,18 @@ extension NetworkManager: ProfileNetworkDependancy {
         let url = "\(SteamApi.baseUrl)IPlayerService/GetRecentlyPlayedGames/v1/"
         let params = [
             "key": Appkey,
-            "steamid": testSteamId,
+            "steamid": SteamApi.appUserSteamId,
             "count": 3
             ] as [String : Any]
         makeRequest(url: url, method: .get, parameters: params) { data in
+            if data != nil {
             if let games = self.parseRecentlyPlayedGems(data: data!) {
                 print(games)
                 completion(games)
             } else {
                 completion(nil)
             }
+            } else {completion(nil)}
         }
     }
     
@@ -122,9 +137,6 @@ extension NetworkManager: ProfileNetworkDependancy {
             
             let avatar = player["avatar"].stringValue
             let name = player["personaname"].stringValue
-            
-            print(avatar)
-            print(name)
             
             return SteamUserProfile(name: name, avararUrl: avatar)
         } else {

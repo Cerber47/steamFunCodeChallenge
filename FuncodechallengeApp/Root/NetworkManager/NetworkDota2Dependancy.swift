@@ -56,7 +56,7 @@ extension NetworkManager: RealmNetworkDependancy {
             "key": Appkey,
             "account_id": testSteamId
         ]
-        
+        print(url)
         makeRequest(url: url, method: .get, parameters: params) { data in
             if data != nil {
                 let matches = self.parseMatches(data: data!)
@@ -92,8 +92,12 @@ extension NetworkManager: RealmNetworkDependancy {
         ]
         
         makeRequest(url: url, method: .get, parameters: params) { data in
-            let match = self.parseMatchDetails(data: data!)
-            completion(match)
+            if data == nil {
+                completion(nil)
+            } else {
+                let match = self.parseMatchDetails(data: data!)
+                completion(match)
+            }
         }
     }
     

@@ -13,6 +13,32 @@ import UIKit
 protocol GameInfoInteractorListener {
 }
 
-class GameinfoInteractor {
+class GameInfoComponent {
     
+    var dataManager: DataManager
+    
+    // TODO - Make as protocol
+    
+    init(dataManager: DataManager) {
+        self.dataManager = dataManager
+    }
+}
+
+class GameinfoInteractor: GameinfoPresenterListener {
+    
+    var presenter: GameinfoPresenter
+    var dependancy: GameInfoComponent
+    
+    // TODO - make as protocol
+    
+    init(presenter: GameinfoPresenter, dependancy: GameInfoComponent) {
+        self.presenter = presenter
+        self.dependancy = dependancy
+        updateInformation()
+    }
+    
+    func updateInformation() {
+        dependancy.dataManager.updateRealmMatches()
+        let matches = dependancy.dataManager.getMatches()
+    }
 }

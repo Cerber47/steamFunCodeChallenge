@@ -10,16 +10,17 @@ import Foundation
 import UIKit
 
 protocol AuthorizationBuildable {
-    func build() -> AuthorizationRouting
+    func build(parentRouter: RootRouting) -> AuthorizationRouting
 }
 
 class AuthorizationBuilder: AuthorizationBuildable {
-    func build() -> AuthorizationRouting {
+    func build(parentRouter: RootRouting) -> AuthorizationRouting {
         let presenter = AuthorizationPresenter()
-        let interactor = AuthorizationInteractor(presenter: presenter)
-        presenter.listener = interactor
         
-        let router = AuthorizationRouter(viewController: UIViewController())
+        let router = AuthorizationRouter(rootRouter: parentRouter, viewController: presenter)
+        
+        let interactor = AuthorizationInteractor(presenter: presenter, router: router)
+        presenter.listener = interactor
         
         return router
     }

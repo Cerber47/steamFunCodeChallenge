@@ -27,6 +27,7 @@ protocol ProfileNetworkDependancy {
 final class ProfileInteractor: ProfilePresenterListener, ProfileInteractable {
     weak var presenter: ProfilePresentable!
     var dependancy: ProfileDependancy!
+    var viewIsReady: Bool = false
     
     func viewIsReadyToPresentData() {
         loadOwnedGames()

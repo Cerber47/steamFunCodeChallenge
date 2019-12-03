@@ -7,19 +7,24 @@
 //
 
 import Foundation
+import RealmSwift
 
 
 protocol GameinfoBuildable {
-    func build() -> GameinfoRouting
+    func build(dependancy: DataManager) -> GameinfoRouting
 }
 
 protocol GameInfoDataManagable {
+    func getMatches() -> Results<MatchInfo>
 }
 
 class GameinfoBuilder: GameinfoBuildable {
-    func build() -> GameinfoRouting {
-        let interactor = GameinfoInteractor()
+    func build(dependancy: DataManager) -> GameinfoRouting {
+        let component = GameInfoComponent(dataManager: dependancy)
+        
         let presenter = GameinfoPresenter()
+        let interactor = GameinfoInteractor(presenter: presenter, dependancy: component)
+        presenter.listener = interactor
         
         let router = GameinfoRouter(interactor: interactor, viewController: presenter)
         

@@ -22,7 +22,6 @@ final class ProfilePresenter: UIViewController, ProfilePresentable {
     
     var steamProfile: SteamUserProfile? { didSet {
         tableView.reloadData()
-        navigationItem.title = steamProfile?.name
         }
     }
     
@@ -38,7 +37,10 @@ final class ProfilePresenter: UIViewController, ProfilePresentable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        navigationItem.title = "Личный профиль"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.isTranslucent = false
         configureView()
         listener?.viewIsReadyToPresentData()
     }
@@ -48,6 +50,9 @@ final class ProfilePresenter: UIViewController, ProfilePresentable {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        tableView.register(GameCellView.self, forCellReuseIdentifier: "GameCell")
+        tableView.register(ProfileCellView.self, forCellReuseIdentifier: "PersonaCell")
+        //tableView.rowHeight = 40.0
         view = tableView
     }
 }
@@ -80,7 +85,8 @@ extension ProfilePresenter: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         if section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PersonaCell") as! ProfileCellView
+            cell.present(name: steamProfile!.name, avatar: URL(string: steamProfile!.avararUrl)!)
             cell.textLabel?.text = steamProfile?.name
             return cell
         } else if section == 1 {
@@ -94,8 +100,10 @@ extension ProfilePresenter: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
         } else if section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell")!
-            cell.textLabel?.text = ownedGames[indexPath.row].name
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell") as! GameCellView
+            cell.present(game: ownedGames[indexPath.row].name, playedFor: ownedGames[indexPath.row].getPlayTimeAsString(), iconUrl: ownedGames[indexPath.row].getStaticUrlForIcon())
+            cell.sizeToFit()
+            //cell.textLabel?.text = ownedGames[indexPath.row].name
             return cell
             
         }
@@ -111,6 +119,17 @@ extension ProfilePresenter: UITableViewDelegate, UITableViewDataSource {
             return "Библиотека игр"
         } else {
             fatalError("Нет такой секции")
+        }
+    }
+    
+    func tableView(_ tableView: UITableView,
+              heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 80
+        } else if indexPath.section == 2 {
+            return 40
+        } else {
+            return 30
         }
     }
 }

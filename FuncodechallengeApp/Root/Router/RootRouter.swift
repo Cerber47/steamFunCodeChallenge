@@ -10,8 +10,25 @@ import Foundation
 import UIKit
 
 
-protocol RootRouting {
+protocol RootRouting: launchingRouter {
     func routeToRootTabs()
+    func routeToAuth() 
+}
+
+protocol launchingRouter {
+    func lauch(from window: UIWindow)
+}
+
+protocol RootDependancy {
+    var dataManager: DataManager {get}
+}
+
+class RootComponent {
+    var dataManager: DataManager
+    
+    init() {
+        dataManager = DataManagerBuilder().build()
+    }
 }
 
 
@@ -33,26 +50,44 @@ class RootRouter: RootRouting {
         self.authorizationBuilder = authorizationBuilder
         
         uiViewController = viewController
+        viewController.view.backgroundColor = .green
     }
     
     func routeToRootTabs() {
         if auth != nil {
-            auth!.uiViewController.dismiss(animated: true)
+            auth!.uiViewController.dismiss(animated: true) {
+                let labViewController = self.makeTabViewController()
+                labViewController.modalPresentationStyle = .overFullScreen
+                self.uiViewController.show(labViewController, sender: nil)
+            }
         }
+    }
+    
+    func routeToAuth() {
+        auth = authorizationBuilder.build(parentRouter: self)
+        uiViewController.present(auth!.uiViewController, animated: false, completion: nil)
+    }
+    
+    func lauch(from window: UIWindow) {
+        window.rootViewController = uiViewController
+    }
+    
+    private func makeTabViewController() -> UIViewController {
         let profile = profileBuilder.build()
-        let gameInfo = gameInfoBuilder.build()
+        let gameInfo = gameInfoBuilder.build(dependancy: DataManagerBuilder().build())
         let friends = friendsBuilder.build()
         
         let viewController = UITabBarController()
         
-        viewController.viewControllers = [profile.getMasterViewController(), gameInfo.getMasterViewController(), friends.getMasterViewController()]
+        let profileVC = profile.getMasterViewController()
+        let gameInfoVC = gameInfo.getMasterViewController()
+        let friendsVC = friends.getMasterViewController()
         
-        uiViewController = viewController
-        tabController = viewController
-    }
-    
-    func routeToAuth() {
-        auth = authorizationBuilder.build()
-        uiViewController.present(auth!.uiViewController, animated: true, completion: nil)
+        profileVC.tabBarItem = UITabBarItem(title: "Профиль", image: nil, selectedImage: nil)
+        gameInfoVC.tabBarItem = UITabBarItem(title: "Статистика", image: nil, selectedImage: nil)
+        friendsVC.tabBarItem = UITabBarItem(title: "Друзей", image: nil, selectedImage: nil)
+        
+        viewController.viewControllers = [profileVC, gameInfoVC, friendsVC]
+        return viewController
     }
 }

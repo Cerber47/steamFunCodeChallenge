@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+
+class DataManagerBuilder {
+    func build() -> DataManager {
+        let network = NetworkManager()
+        
+        let dataManager = DataManager(component: network)
+        
+        return dataManager
+    }
+}

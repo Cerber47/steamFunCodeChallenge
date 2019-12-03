@@ -30,7 +30,7 @@ class RootBuilder: RootBuildable {
         let friendsBuilder = FriendsBuilder()
         let authorizationBuilder = AuthorizationBuilder()
         
-        let router = RootRouter(profileBuilder: profileBuilder, gameInfoBuilder: gameInfoBuilder, friendsBuilder: friendsBuilder, authorizationBuilder: authorizationBuilder, viewController: UITabBarController())
+        let router = RootRouter(profileBuilder: profileBuilder, gameInfoBuilder: gameInfoBuilder, friendsBuilder: friendsBuilder, authorizationBuilder: authorizationBuilder, viewController: UIViewController())
         
         return router
     }

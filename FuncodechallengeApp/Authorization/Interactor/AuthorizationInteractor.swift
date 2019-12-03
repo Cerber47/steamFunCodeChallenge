@@ -26,6 +26,7 @@ class AuthorizationInteractor: AuthorizationPresenterListener {
     }
     
     func authCompleted() {
+        print("Completed?")
         router.routeToTabs()
     }
 }

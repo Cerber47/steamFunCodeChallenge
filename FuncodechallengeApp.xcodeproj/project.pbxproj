@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		487D1BFC497D958C18BAD9FE /* Pods_FuncodechallengeAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC83A5DE542F665F2706BF2 /* Pods_FuncodechallengeAppTests.framework */; };
+		6900D5A5239325FA00E9E2A2 /* GameCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6900D5A4239325FA00E9E2A2 /* GameCellView.swift */; };
 		691D569C238802FE00FD1EB0 /* AppBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691D569B238802FE00FD1EB0 /* AppBuilder.swift */; };
 		691D569E238804AC00FD1EB0 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691D569D238804AC00FD1EB0 /* ProfileRouter.swift */; };
 		691D56A1238805C800FD1EB0 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691D56A0238805C800FD1EB0 /* ProfileBuilder.swift */; };
@@ -29,6 +30,9 @@
 		693E232E23871C49000783F6 /* FuncodechallengeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693E232D23871C49000783F6 /* FuncodechallengeAppUITests.swift */; };
 		693E234023872668000783F6 /* AuthorizationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693E233F23872668000783F6 /* AuthorizationPresenter.swift */; };
 		693E234623872834000783F6 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693E234523872834000783F6 /* ProfilePresenter.swift */; };
+		69456DA7239520B700306BAE /* ProfileCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69456DA6239520B700306BAE /* ProfileCellView.swift */; };
+		69456DAA23952BEC00306BAE /* FriendCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69456DA923952BEC00306BAE /* FriendCellView.swift */; };
+		69456DAC239542D100306BAE /* DataManagerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69456DAB239542D100306BAE /* DataManagerBuilder.swift */; };
 		698C8B3C238C04C000AC622C /* NetworkFriendsDepandancy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C8B3B238C04C000AC622C /* NetworkFriendsDepandancy.swift */; };
 		698C8B3E238C7D9700AC622C /* NetworkDota2Dependancy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698C8B3D238C7D9700AC622C /* NetworkDota2Dependancy.swift */; };
 		69C445FB2387351C00315115 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C445FA2387351C00315115 /* ProfileInteractor.swift */; };
@@ -65,6 +69,7 @@
 /* Begin PBXFileReference section */
 		3DC83A5DE542F665F2706BF2 /* Pods_FuncodechallengeAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FuncodechallengeAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		619D8B38CF425167727C0EB9 /* Pods-FuncodechallengeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FuncodechallengeApp.release.xcconfig"; path = "Target Support Files/Pods-FuncodechallengeApp/Pods-FuncodechallengeApp.release.xcconfig"; sourceTree = "<group>"; };
+		6900D5A4239325FA00E9E2A2 /* GameCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCellView.swift; sourceTree = "<group>"; };
 		690EE1CA7C09C08E2D4DEEDE /* Pods-FuncodechallengeAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FuncodechallengeAppTests.debug.xcconfig"; path = "Target Support Files/Pods-FuncodechallengeAppTests/Pods-FuncodechallengeAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		691D569B238802FE00FD1EB0 /* AppBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBuilder.swift; sourceTree = "<group>"; };
 		691D569D238804AC00FD1EB0 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
@@ -93,6 +98,9 @@
 		693E232F23871C49000783F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		693E233F23872668000783F6 /* AuthorizationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenter.swift; sourceTree = "<group>"; };
 		693E234523872834000783F6 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		69456DA6239520B700306BAE /* ProfileCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellView.swift; sourceTree = "<group>"; };
+		69456DA923952BEC00306BAE /* FriendCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCellView.swift; sourceTree = "<group>"; };
+		69456DAB239542D100306BAE /* DataManagerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerBuilder.swift; sourceTree = "<group>"; };
 		698C8B3B238C04C000AC622C /* NetworkFriendsDepandancy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFriendsDepandancy.swift; sourceTree = "<group>"; };
 		698C8B3D238C7D9700AC622C /* NetworkDota2Dependancy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDota2Dependancy.swift; sourceTree = "<group>"; };
 		69C445FA2387351C00315115 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
@@ -145,6 +153,15 @@
 				3DC83A5DE542F665F2706BF2 /* Pods_FuncodechallengeAppTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6900D5A3239325D300E9E2A2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6900D5A4239325FA00E9E2A2 /* GameCellView.swift */,
+				69456DA6239520B700306BAE /* ProfileCellView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		691D569A238802DC00FD1EB0 /* StartApp */ = {
@@ -210,6 +227,7 @@
 		691D56AF2388178700FD1EB0 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				69456DA823952BD900306BAE /* Views */,
 				691D56B3238817C200FD1EB0 /* Builder */,
 				691D56B2238817AF00FD1EB0 /* Presenter */,
 				691D56B1238817A300FD1EB0 /* Interactor */,
@@ -346,6 +364,7 @@
 		693E2341238727FE000783F6 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				6900D5A3239325D300E9E2A2 /* Views */,
 				691D569F238805B600FD1EB0 /* Builder */,
 				693E23442387281D000783F6 /* Presenter */,
 				693E234323872813000783F6 /* Interactor */,
@@ -378,6 +397,14 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		69456DA823952BD900306BAE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				69456DA923952BEC00306BAE /* FriendCellView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		69C445FC23873AEB00315115 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +434,7 @@
 			children = (
 				69E99371238D42E900772A4A /* Realm */,
 				69E9936F238D42E400772A4A /* DataManager.swift */,
+				69456DAB239542D100306BAE /* DataManagerBuilder.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -678,6 +706,7 @@
 			files = (
 				691D56AA2388126000FD1EB0 /* GameinfoPresenter.swift in Sources */,
 				691D56B5238817D200FD1EB0 /* FriendsBuilder.swift in Sources */,
+				69456DAA23952BEC00306BAE /* FriendCellView.swift in Sources */,
 				69E9937E238DA66F00772A4A /* RootBuilder.swift in Sources */,
 				691D56AE2388127E00FD1EB0 /* GameInfoBuilder.swift in Sources */,
 				691D56BD23882B2D00FD1EB0 /* NetwrokProfileDependancy.swift in Sources */,
@@ -690,8 +719,10 @@
 				693E231023871C44000783F6 /* ViewController.swift in Sources */,
 				693E230C23871C44000783F6 /* AppDelegate.swift in Sources */,
 				691D56B9238817EF00FD1EB0 /* FriendsInteractor.swift in Sources */,
+				69456DA7239520B700306BAE /* ProfileCellView.swift in Sources */,
 				69E99374238D430B00772A4A /* Dota2Match.swift in Sources */,
 				69E99370238D42E400772A4A /* DataManager.swift in Sources */,
+				6900D5A5239325FA00E9E2A2 /* GameCellView.swift in Sources */,
 				691D56AC2388126C00FD1EB0 /* GameinfoRouter.swift in Sources */,
 				691D569E238804AC00FD1EB0 /* ProfileRouter.swift in Sources */,
 				69E99381238DA6F400772A4A /* RootRouter.swift in Sources */,
@@ -701,6 +732,7 @@
 				698C8B3C238C04C000AC622C /* NetworkFriendsDepandancy.swift in Sources */,
 				69C445FF23873D8300315115 /* NetworkManager.swift in Sources */,
 				693E234623872834000783F6 /* ProfilePresenter.swift in Sources */,
+				69456DAC239542D100306BAE /* DataManagerBuilder.swift in Sources */,
 				69E99383238DB2D800772A4A /* AuthorizationRouter.swift in Sources */,
 				698C8B3E238C7D9700AC622C /* NetworkDota2Dependancy.swift in Sources */,
 				69C445FB2387351C00315115 /* ProfileInteractor.swift in Sources */,

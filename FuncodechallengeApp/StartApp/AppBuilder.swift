@@ -15,7 +15,7 @@ final class AppBuilder {
         let tabViewController = UITabBarController()
         
         let profileRouter = ProfileBuilder().build()
-        let gameinfoRouter  = GameinfoBuilder().build()
+        let gameinfoRouter  = GameinfoBuilder().build(dependancy: DataManagerBuilder().build())
         let friendsRouter = FriendsBuilder().build()
         
         let profileViewController = profileRouter.getMasterViewController()
