@@ -40,5 +40,6 @@ class GameinfoInteractor: GameinfoPresenterListener {
     func updateInformation() {
         dependancy.dataManager.updateRealmMatches()
         let matches = dependancy.dataManager.getMatches()
+        presenter.setMathces(matches: ChartMatchInfo.array(from: matches))
     }
 }

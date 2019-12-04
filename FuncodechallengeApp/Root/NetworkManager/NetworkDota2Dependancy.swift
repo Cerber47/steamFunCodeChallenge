@@ -42,6 +42,7 @@ struct Dota2MatchDetailsPlayer {
     var gpm: Int
     var xpm: Int
     var level: Int
+    var slot: Int
 }
 
 fileprivate let base_url = "https://api.steampowered.com/"
@@ -123,8 +124,9 @@ extension NetworkManager: RealmNetworkDependancy {
                 let gpm = player["gold_per_min"].intValue
                 let xpm = player["xp_per_min"].intValue
                 let level = player["level"].intValue
+                let slot = player["player_slot"].intValue
                 
-                players.append(Dota2MatchDetailsPlayer(accountId: accountId, heroId: heroId, kills: kills, deaths: deaths, assists: assists, lastHits: lastHits, denies: denies, gpm: gpm, xpm: xpm, level: level))
+                players.append(Dota2MatchDetailsPlayer(accountId: accountId, heroId: heroId, kills: kills, deaths: deaths, assists: assists, lastHits: lastHits, denies: denies, gpm: gpm, xpm: xpm, level: level, slot: slot))
             }
             return Dota2MatchDetails(players: players, radiantWin: radiantWin, duration: duration, timeStamp: timeStamp, matchId: matchId, radiantScore: radiantScore, direScore: direScore)
         } else {

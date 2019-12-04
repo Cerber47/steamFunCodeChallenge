@@ -23,6 +23,7 @@ class MatchInfo: Object {
     @objc dynamic var direScore = 0
     
     @objc dynamic var heroId = 0
+    @objc dynamic var slot = 0
     
     @objc dynamic var kills = 0
     @objc dynamic var deaths = 0

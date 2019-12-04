@@ -26,15 +26,16 @@ class DataManager: DataManagable {
     init(component: RealmNetworkDependancy) {
         
         let config = Realm.Configuration(
-        schemaVersion: 4,
+        schemaVersion: 5,
         migrationBlock: { migration, oldSchemaVersion in
-        if oldSchemaVersion < 4 {
+        if oldSchemaVersion < 5 {
             }}
         )
         Realm.Configuration.defaultConfiguration = config
         
         realm = try! Realm()
         networkComponent = component
+        
     }
     
     
@@ -106,10 +107,12 @@ class DataManager: DataManagable {
         matchInfo.direScore = details.direScore
         matchInfo.radiantScore = details.radiantScore
         matchInfo.timestamp = details.timeStamp
+        
         matchInfo.radiantWin = details.radiantWin
         
         for player in details.players {
             if player.accountId == Int(thisPlayerId) {
+                
                 matchInfo.kills = player.kills
                 matchInfo.assists = player.assists
                 matchInfo.deaths = player.deaths
@@ -119,6 +122,7 @@ class DataManager: DataManagable {
                 matchInfo.gpm = player.gpm
                 matchInfo.xpm = player.xpm
                 matchInfo.heroId = player.heroId
+                matchInfo.slot = player.slot
                 break
             }
         }
