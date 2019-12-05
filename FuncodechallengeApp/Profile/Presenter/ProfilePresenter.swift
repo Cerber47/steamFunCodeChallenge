@@ -94,16 +94,19 @@ extension ProfilePresenter: UITableViewDelegate, UITableViewDataSource {
             if recentyPlayedGames.isEmpty {
                 cell.textLabel?.text = "Нет недавней активности"
                 cell.textLabel?.textAlignment = .center
+                cell.backgroundColor = .black
+                cell.textLabel?.textColor = .white
             } else {
                 cell.textLabel?.text = recentyPlayedGames[indexPath.row].name
+                cell.backgroundColor = .black
                 cell.textLabel?.textAlignment = .left
+                cell.textLabel?.textColor = .white
             }
             return cell
         } else if section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell") as! GameCellView
             cell.present(game: ownedGames[indexPath.row].name, playedFor: ownedGames[indexPath.row].getPlayTimeAsString(), iconUrl: ownedGames[indexPath.row].getStaticUrlForIcon())
             cell.sizeToFit()
-            //cell.textLabel?.text = ownedGames[indexPath.row].name
             return cell
             
         }
@@ -132,4 +135,26 @@ extension ProfilePresenter: UITableViewDelegate, UITableViewDataSource {
             return 30
         }
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var sectionName = ""
+        
+        if section == 1 {
+            sectionName = "Недавно играл"
+        } else if section == 2 {
+            sectionName = "Библиотека игр"
+        }
+        
+        let view = UIView()
+        let label = UILabel()
+        label.text = sectionName
+        label.textColor = .white
+        label.textAlignment = .center
+        view.addSubview(label)
+        label.autoPinEdgesToSuperviewEdges()
+        view.backgroundColor = .black
+        
+        return view
+    }
+    
 }

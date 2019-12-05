@@ -28,7 +28,7 @@ final class AuthorizationPresenter: UIViewController, AuthorizationPresentable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
+        view.backgroundColor = .black
         SteamLogin.steamApiKey = appKey
     }
     

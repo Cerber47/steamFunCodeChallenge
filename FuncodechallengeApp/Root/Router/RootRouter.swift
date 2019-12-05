@@ -85,7 +85,7 @@ class RootRouter: RootRouting {
         
         profileVC.tabBarItem = UITabBarItem(title: "Профиль", image: nil, selectedImage: nil)
         gameInfoVC.tabBarItem = UITabBarItem(title: "Статистика", image: nil, selectedImage: nil)
-        friendsVC.tabBarItem = UITabBarItem(title: "Друзей", image: nil, selectedImage: nil)
+        friendsVC.tabBarItem = UITabBarItem(title: "Друзья", image: nil, selectedImage: nil)
         
         viewController.viewControllers = [profileVC, gameInfoVC, friendsVC]
         return viewController

@@ -21,12 +21,10 @@ class AuthorizationRouter: AuthorizationRouting {
     
     init(rootRouter: RootRouting, viewController: UIViewController) {
         uiViewController = viewController
-        print("has viewcontroller!")
         self.rootRouter = rootRouter
     }
     
     func routeToTabs() {
-        print("To tabs")
         rootRouter.routeToRootTabs()
     }
 }
