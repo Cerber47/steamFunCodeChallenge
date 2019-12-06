@@ -122,7 +122,7 @@ extension NetworkManager: ProfileNetworkDependancy {
         let url = "\(SteamApi.baseUrl)ISteamUser/GetPlayerSummaries/v0002/"
         let params = [
             "key":Appkey,
-            "steamids": testSteamId
+            "steamids": SteamApi.appUserSteamId
         ]
         makeRequest(url: url, method: .get, parameters: params) { data in
             if data != nil {

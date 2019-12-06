@@ -52,7 +52,6 @@ final class ProfilePresenter: UIViewController, ProfilePresentable {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
         tableView.register(GameCellView.self, forCellReuseIdentifier: "GameCell")
         tableView.register(ProfileCellView.self, forCellReuseIdentifier: "PersonaCell")
-        //tableView.rowHeight = 40.0
         view = tableView
     }
 }

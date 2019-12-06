@@ -24,7 +24,7 @@ extension NetworkManager: FriendsNetworkDependancy {
         let url = "\(SteamApi.baseUrl)ISteamUser/GetFriendList/v1/"
         let parameters = [
             "key": Appkey,
-            "steamid": testSteamId
+            "steamid": SteamApi.appUserSteamId
             ]
         makeRequest(url: url, method: .get, parameters: parameters) { data in
             if data != nil {

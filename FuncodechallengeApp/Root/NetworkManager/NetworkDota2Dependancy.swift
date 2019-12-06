@@ -55,9 +55,8 @@ extension NetworkManager: RealmNetworkDependancy {
         let url = "\(base_url)IDOTA2Match_570/GetMatchHistory/V001/"
         let params = [
             "key": Appkey,
-            "account_id": testSteamId
+            "account_id": SteamApi.appUserSteamId
         ]
-        print(url)
         makeRequest(url: url, method: .get, parameters: params) { data in
             if data != nil {
                 let matches = self.parseMatches(data: data!)
